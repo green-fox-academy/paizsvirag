@@ -1,0 +1,47 @@
+body {
+  background-image: url('topography.png');
+  font-family: 'Consolas', courier, monospace;
+  margin: 0%;
+}
+
+.navigation {
+    background-color: #333333;
+    word-spacing: 50px;
+    padding-left: 150px;
+    text-align: right;
+    padding-right: 150px;
+    height: 40px;
+    padding-top: 10px;
+}
+
+img {
+    float: left;
+}
+
+.pagge {
+    padding: 0 10%;
+}
+
+.dashandtitle {
+    text-align: center;
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 30px;
+
+}
+
+a:link {
+    color: #ff0099
+}
+
+h1 {
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 40px;
+}
+
+h2 {
+    color: #ff0099
+}
+
+h4 {
+    font-family: 'Fjalla One', sans-serif;
+}

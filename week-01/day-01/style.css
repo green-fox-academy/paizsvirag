@@ -1,0 +1,41 @@
+
+/*here is a comment*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+img {
+    width: 100%
+}
+
+article {
+    max-width: 600px;
+    margin: 0 auto;
+
+}
+
+h1,h2 {
+    text-align: center;
+}
+
+h1 {
+    color: #5c5c5d;
+    font-size: 40px;
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 28px;
+    margin: 10px 0;
+    color: #c7ad59;
+}
+
+p {
+    font-size: 18px;
+    color: #9e9e9e;
+}
