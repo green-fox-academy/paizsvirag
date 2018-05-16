@@ -13,9 +13,6 @@ function ticTacResult(filePath: string) {
     try {
         let theRealWinner: string = fs.readFileSync(filePath, 'utf-8').split('\r\n');
         if (
-            (theRealWinner[0] === 'OOO') ||
-            (theRealWinner[1] === 'OOO') ||
-            (theRealWinner[2] === 'OOO') ||
             (theRealWinner[0][0] === theRealWinner[0][1] && theRealWinner[0][1] === theRealWinner[0][2] && theRealWinner[0][2] === 'O') ||
             (theRealWinner[1][0] === theRealWinner[1][1] && theRealWinner[1][1] === theRealWinner[1][2] && theRealWinner[1][2] === 'O') ||
             (theRealWinner[2][0] === theRealWinner[2][1] && theRealWinner[2][1] === theRealWinner[2][2] && theRealWinner[2][2] === 'O') ||
@@ -26,9 +23,6 @@ function ticTacResult(filePath: string) {
             (theRealWinner[0][2] === theRealWinner[1][1] && theRealWinner[1][1] === theRealWinner[2][0] && theRealWinner[2][0] === 'O')) {
             return 'the winner is O';
         } else if (
-            (theRealWinner[0] === 'XXX') ||
-            (theRealWinner[1] === 'XXX') ||
-            (theRealWinner[2] === 'XXX') ||
             (theRealWinner[0][0] === theRealWinner[0][1] && theRealWinner[0][1] === theRealWinner[0][2] && theRealWinner[0][2] === 'X') ||
             (theRealWinner[1][0] === theRealWinner[1][1] && theRealWinner[1][1] === theRealWinner[1][2] && theRealWinner[1][2] === 'X') ||
             (theRealWinner[2][0] === theRealWinner[2][1] && theRealWinner[2][1] === theRealWinner[2][2] && theRealWinner[2][2] === 'X') ||
