@@ -2,13 +2,14 @@
 
 export{}
 
-function factorial(num: number): number {
-  if (num <= 1) { 
-    return 1;
-  }
-  else {
-    return num * factorial(num - 1);
+function counter(n: number): number {
+  if (n === 0) {
+    console.log(n)
+    return n;
+  } else {
+    console.log(n)
+    return counter(n - 1);
   }
 }
 
-console.log('5! is', factorial(5));
+counter(10)
