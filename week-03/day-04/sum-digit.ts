@@ -12,4 +12,4 @@ function sumDigits(n:number) {
   return (n % 10) + sumDigits(Math.floor(n / 10));
 };
 
-console.log(sumDigits(49957358675847));
+console.log(sumDigits(126));
