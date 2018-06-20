@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Workshop: innerHTML, textContent</title>
+  </head>
+  <body>
+    <p class="apple">apple</p>
+    <p class="balloon">banana</p>
+    <p class="cat">car</p>
+    <p class="animals">goat rabbit <strong>cat</strong> dog</p>
+
+    <script>
+      let animals = document.querySelector('.animals');
+      let theLastOnes = animals.textContent;
+      let apple = document.querySelector('.apple');
+      apple.textContent = theLastOnes;
+      let banana = document.querySelector('.balloon');
+      banana.textContent = theLastOnes;
+      let car = document.querySelector('.cat');
+      car.textContent = theLastOnes;
+     // fill every paragraph with the last one's content.
+      let animals = document.querySelector('.animals');
+      let theLastOnes = animals.innerHTML;
+      let apple = document.querySelector('.apple');
+      apple.innerHTML = theLastOnes;
+      let banana = document.querySelector('.balloon');
+      banana.innerHTML = theLastOnes;
+      let car = document.querySelector('.cat');
+      car.innerHTML = theLastOnes;
+      //fill every paragraph with the last one's content keeping the cat strong.
+    </script>
+   
+  </body>
+</html>
