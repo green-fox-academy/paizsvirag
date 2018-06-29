@@ -19,6 +19,12 @@ app.use('/static', express.static('static'));
 
 app.use(express.json());
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'static/index.html'));
 });
@@ -43,26 +49,61 @@ app.get('/posts', (req, res) => {
 });
 
 app.post('/posts', (req, res) => {
-    let sql = `INSERT INTO posts (title, url, timestamp, score) VALUES ("${req.body.title}", "${req.body.url}", unix_timestamp(), "0");`;
+  let sql = `INSERT INTO posts (title, URL, timestamp, score) VALUES ("${req.body.title}", "${req.body.URL}", unix_timestamp(), "0");`;
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send();
+      return;
+    }
+    sql = `SELECT * FROM posts WHERE ID = ${rows.insertId};`
     conn.query(sql, (err, rows) => {
       if (err) {
         console.log(err);
         res.status(500).send();
         return;
       }
-      sql = `SELECT * FROM posts WHERE id = ${rows.insertId};`
-      conn.query(sql, (err, rows) => {
-        if (err) {
-          console.log(err);
-          res.status(500).send();
-          return;
-        }
-        res.json({
-          rows
-        });
+      res.json({
+        rows
       });
     });
   });
+});
+
+app.put('/posts/:id/upvote', (req, res) => {
+
+});
+
+app.put('/posts/:id/downvote', (res, req) => {
+
+});
+
+app.delete('/posts/:id', (req, res) => {
+  const id = req.params.id
+  let sql = `SELECT * FROM posts WHERE ID = ${id};`;
+
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send();
+      return;
+    };
+
+    const deletedRows = rows;
+
+    sql = `DELETE FROM posts WHERE id = ${id};`;
+    conn.query(sql, (err, rows) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send();
+        return;
+      };
+      res.json({
+        deletedRows
+      });
+    });
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}`);
