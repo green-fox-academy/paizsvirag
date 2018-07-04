@@ -4,7 +4,12 @@
   font-family: Montserrat, sans-serif;
 }
 
+body {
+  background-color: #585858;
+}
+
 .wrapper {
+  background-color: white;
   display: flex;
   flex-direction: column;
   width: 300px;
@@ -15,6 +20,9 @@
   margin-top: 5%;
 }
 
+a:link {
+  color: #585858;
+}
 
 p {
   text-transform: uppercase;
