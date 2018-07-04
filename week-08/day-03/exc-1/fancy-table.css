@@ -1,0 +1,38 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  background: #3E94EC;
+}
+
+td {
+  padding: 20px;
+}
+
+tr {
+  background: #FFFFFF;
+  border: 3px solid #C3C5D1;
+  color: #7A7E94;
+}
+
+tr:nth-child(odd) {
+  background: #EBEBEB;
+}
+
+tr:hover {
+  background: #ddd;
+}
+
+th {
+  background: #1B1E24;
+  color: #D5DDE5;
+  width: 200px;
+  height: 30px;
+  padding: 20px;
+  text-align: left;
+}
