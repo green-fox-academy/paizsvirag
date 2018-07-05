@@ -56,7 +56,44 @@ app.post('/posts', (req, res) => {
       res.status(500).send();
       return;
     }
-    sql = `SELECT * FROM posts WHERE ID = ${rows.insertId};`
+    const insertedID = rows.insertId;
+    sql = `INSERT INTO users (username)
+    SELECT '${req.body.owner}' WHERE NOT EXISTS (SELECT * FROM users WHERE username='${req.body.owner}');`;
+    conn.query(sql, (err, rows) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send();
+        return;
+      }
+      sql = `SELECT * FROM posts WHERE ID = ${insertedID};`
+      conn.query(sql, (err, rows) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send();
+          return;
+        }
+        res.json({
+          rows
+        });
+      });
+    });
+  });
+});
+
+app.put('/posts/:id/upvote', (req, res) => {
+  const vote = req.body.vote;
+  const id = req.params.id;
+  let sql = '';
+  if (vote === 1) {
+    sql = `SELECT posts SET score = score + 1, vote = "${vote}" WHERE id = ${id}`;
+  }
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send();
+      return;
+    }
+    sql = `SELECT * FROM posts WHERE id = ${id};`
     conn.query(sql, (err, rows) => {
       if (err) {
         console.log(err);
@@ -70,12 +107,32 @@ app.post('/posts', (req, res) => {
   });
 });
 
-app.put('/posts/:id/upvote', (req, res) => {
-
-});
 
 app.put('/posts/:id/downvote', (res, req) => {
-
+  const vote = req.body.vote;
+  const id = req.params.id;
+  let sql = '';
+  if (vote === -1) {
+    sql = `UPDATE posts SET score = score - 1, vote ="${vote}" WHERE id = ${id};`;
+  }
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send();
+      return;
+    }
+    sql = `SELECT * FROM posts WHERE id = ${id};`
+    conn.query(sql, (err, rows) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send();
+        return;
+      }
+      res.json({
+        rows
+      });
+    });
+  });
 });
 
 app.delete('/posts/:id', (req, res) => {
@@ -91,7 +148,7 @@ app.delete('/posts/:id', (req, res) => {
 
     const deletedRows = rows;
 
-    sql = `DELETE FROM posts WHERE id = ${id};`;
+    sql = `DELETE FROM posts WHERE ID = ${id};`;
     conn.query(sql, (err, rows) => {
       if (err) {
         console.log(err);
