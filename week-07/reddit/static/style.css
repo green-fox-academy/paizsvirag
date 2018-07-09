@@ -1,0 +1,90 @@
+* {
+  font-family: 'Lato', sans-serif;
+}
+
+body{
+  background-image: url(http://www.technocrazed.com/wp-content/uploads/2015/12/HD-Space-Wallpaper-For-Background-6.jpg);
+}
+
+.big-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.header{
+  display: flex;
+}
+
+.wrapper {
+  background-color: white;
+  display: flex;
+  width: 1351px;
+}
+.main {
+  width: 80%;
+}
+.posts {
+  display: flex;
+  width: 100%;
+  background-color: #f1f1f1;
+  border-color:#dbdbdb;
+  border-style: solid;
+  margin: 5px;
+  border-width: 1px;
+  align-items: center;
+}
+
+.scores {
+  display: flex;
+  height: 70px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 0;
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+.timestamp {
+  font-size: 12px;
+  margin: 0;
+  padding: 0 auto;
+  margin-left: 30px;
+}
+
+.score {
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.url {
+  font-size: 12px;
+  margin-left: 30px;
+}
+
+.upvote {
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.downvote {
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+

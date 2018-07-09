@@ -15,6 +15,7 @@ const conn = mysql.createConnection({
   database: process.env.DB_DATABASE,
 });
 
+app.use(express.static(__dirname));
 app.use('/static', express.static('static'));
 
 app.use(express.json());
@@ -57,14 +58,14 @@ app.post('/posts', (req, res) => {
       return;
     }
     const insertedID = rows.insertId;
-    sql = `INSERT INTO users (username)
-    SELECT '${req.body.owner}' WHERE NOT EXISTS (SELECT * FROM users WHERE username='${req.body.owner}');`;
-    conn.query(sql, (err, rows) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send();
-        return;
-      }
+    // sql = `INSERT INTO users (username)
+    // SELECT '${req.body.owner}' WHERE NOT EXISTS (SELECT * FROM users WHERE username='${req.body.owner}');`;
+    // conn.query(sql, (err, rows) => {
+    //   if (err) {
+    //     console.log(err);
+    //     res.status(500).send();
+    //     return;
+    //   }
       sql = `SELECT * FROM posts WHERE ID = ${insertedID};`
       conn.query(sql, (err, rows) => {
         if (err) {
@@ -78,14 +79,15 @@ app.post('/posts', (req, res) => {
       });
     });
   });
-});
+
 
 app.put('/posts/:id/upvote', (req, res) => {
+
   const vote = req.body.vote;
   const id = req.params.id;
   let sql = '';
-  if (vote === 1) {
-    sql = `SELECT posts SET score = score + 1, vote = "${vote}" WHERE id = ${id}`;
+  if (vote === "1") {
+    sql = `UPDATE posts SET score = score + 1, vote = "${vote}" WHERE id = ${id};`;
   }
   conn.query(sql, (err, rows) => {
     if (err) {
